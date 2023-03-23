@@ -9,7 +9,7 @@ function LoginButton(){
     </div>
 }
 function LogoutButton(){
-    return <div className="text-white font-semibold hover:text-red-500">
+    return <div className="text-white font-semibold hover:text-red-500 ">
         <button onClick={()=> signOut({callbackUrl:`${window.location.origin}/`})}> logout</button>
     </div>
 }
