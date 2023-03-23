@@ -2,7 +2,7 @@
 
 import {User} from "../../types"
 import {DoesUsernameExist} from "../../utils"
-import { prisma } from '../../prisma'
+import  prisma  from '../../prisma'
 import { hash } from "bcrypt";
 import { NextResponse } from "next/server";
 export  async function POST(req:Request){

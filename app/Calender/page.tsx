@@ -40,7 +40,7 @@ export default function Calender(){
         return Reminders.filter(
         (reminder) => {
            
-          return  reminder.due_date === DateToCheck
+          return  reminder.due_date as unknown as string === DateToCheck
         })
     
     },[due_date,Reminders]);
