@@ -9,7 +9,6 @@ export default function RemindersPage({ params}:any) {
   const CaseId=params.CaseId
   const session=useSession()
   const {Reminders,SetReminders}=useRemindersContext()
-
   const FilteredReminders=useMemo(()=>Reminders.filter((rem)=>rem.caseid==Number.parseInt(CaseId as string)),[Reminders])
 
 

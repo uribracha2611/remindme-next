@@ -27,7 +27,7 @@ providers: [
       let user=await DoesUsernameExist(credentials?.username as string)
       if(user){
           if(await compare(credentials?.password as string, user.password)){
-              return user
+              return user as any
           }
           else{
               return null
