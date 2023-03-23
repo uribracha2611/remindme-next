@@ -1,7 +1,7 @@
 import {  Reminders } from "@prisma/client"
 import {sign,verify} from "jsonwebtoken"
 
-import { useAtom } from "jotai";
+
 import {RemindersState} from './store';
 import { Case } from "./types";
 import  prisma  from './prisma'
