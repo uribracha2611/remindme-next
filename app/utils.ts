@@ -2,7 +2,7 @@ import {  Reminders } from "@prisma/client"
 import {sign,verify} from "jsonwebtoken"
 
 
-import {RemindersState} from './store';
+
 import { Case } from "./types";
 import  prisma  from './prisma'
 
@@ -29,7 +29,11 @@ export function CreateAcsessToken(id:number,AcsessToken:string){
 export function filterRemindersByDate(arr: Reminders[], date:Date) {
     const startOfDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
     const endOfDay = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1, 0, 0, -1);
-    return arr.filter(Reminder => Reminder.due_date  >= startOfDay && Reminder.due_date  <= endOfDay);
+    return arr.filter(Reminder => {
+      if(Reminder.due_date){
+      Reminder.due_date  >= startOfDay && Reminder.due_date  <= endOfDay
+      }
+    });
   }
 
 export function filterRemindersByCase(arr:Reminders[],CaseId:Number){
