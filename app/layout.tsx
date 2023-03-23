@@ -24,15 +24,18 @@ export default function RootLayout({
   
   return (
     <html lang="en">
-<body>
+<body >
   <AuthContext>
   <AppStore>
-    <NavBar />
+  <NavBar />
     <BackButton/>
+
+    
     <main>{children}</main>
     </AppStore>
     </AuthContext>
   <Footer/>
+
 
     </body>
     
