@@ -18,6 +18,7 @@ export default function Calender(){
             throw new Error("Failed to fetch reminders");
           }
           const data = await response.json();
+          console.log("data is " +JSON.stringify(data))
           SetReminders(data.reminders);
         } catch (error) {
           console.error(error);
