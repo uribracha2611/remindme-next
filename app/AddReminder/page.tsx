@@ -22,9 +22,13 @@ export default function ReminderForm() {
     console.log("add date "+  dueDateObj)
     let request_data={"task": task, caseid: parseInt(caseId) ,"summery": summary,"due_date": dueDateObj,userid:session?.user?.id} as Reminders
   
-    let result: BaseRespone=await (await fetch("/api/add",{method:"POST",body:JSON.stringify(request_data)})).json()
+    let response=await  fetch("/api/add",{method:"POST",body:JSON.stringify(request_data)})
+    let  result=await response.json()
     setStatus(result.message)
-    SetReminders([...Reminders,request_data])
+    if(response.status==200){
+
+    SetReminders([...Reminders,result.reminder])
+    }
   
     
   };

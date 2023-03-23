@@ -18,7 +18,7 @@ export  async function POST(req:any, res:any){
             const ReqData=await req.json() as Reminders
            const  result= await prisma.reminders.create({data:ReqData})
            if(result){
-         return   NextResponse.json({"message":"Reminder added"},{status:200})
+         return   NextResponse.json({"message":"Reminder added","reminder":result},{status:200})
            }
            else{
             return   NextResponse.json({"message":"there was an error"},{status:400})
