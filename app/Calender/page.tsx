@@ -3,11 +3,12 @@ import { useSession } from "next-auth/react";
 import { SetStateAction, useEffect, useMemo, useState } from "react";
 import ReminderView from "../Cases/[CaseId]/reminderView";
 import { useRemindersContext } from "../store";
-
+import LoadingScreen from "../LoadingScreen" 
 export default function Calender(){
     
     const [due_date, setDueDate] = useState(new Date().toISOString().split('T')[0]);
     const {Reminders,SetReminders}=useRemindersContext()
+    const [Loading,SetLoading]=useState(false)
     const session=useSession()
     useEffect(()=>{
    
@@ -20,13 +21,16 @@ export default function Calender(){
           const data = await response.json();
           console.log("data is " +JSON.stringify(data))
           SetReminders(data.reminders);
+          SetLoading(false)
         } catch (error) {
           console.error(error);
         }
       }
       
       if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0) {
+        SetLoading(true)
         fetchReminders()
+        
       };
   
     },
@@ -52,7 +56,7 @@ export default function Calender(){
     
     return (
         <div>
-          <div className="mt-5">
+          <div className="mt-2">
             <div className="bg-gray-300 rounded overflow-hidden shadow-lg w-1/2 mx-auto p-3">
               <div className="mx-3">
                 <div className="text-2xl text-center text-gray-700 font-semibold">
@@ -81,6 +85,7 @@ export default function Calender(){
               </div>
             </form>
           </div>
+        
           <div className="grid grid-cols-3 gap-3 mx-3">
             {filteredReminders.map((Reminder) => (
               <ReminderView

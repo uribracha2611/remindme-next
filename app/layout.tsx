@@ -34,7 +34,7 @@ export default function RootLayout({
     <main>{children}</main>
     </AppStore>
     </AuthContext>
-  <Footer/>
+
 
 
     </body>

@@ -2,11 +2,12 @@
 import { Reminders } from "@prisma/client";
 import ReminderView from "./reminderView"
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRemindersContext } from "@/app/store";
 import { useSession } from "next-auth/react";
 export default function RemindersPage({ params}:any) {
   const CaseId=params.CaseId
+  const [Loading,SetLoading]=useState(false)
   const session=useSession()
   const {Reminders,SetReminders}=useRemindersContext()
   const FilteredReminders=useMemo(()=>Reminders.filter((rem)=>rem.caseid==Number.parseInt(CaseId as string)),[Reminders])
@@ -29,6 +30,7 @@ export default function RemindersPage({ params}:any) {
       }
       
       if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0) {
+        SetLoading(true)
         fetchReminders()
       };
   
