@@ -1,60 +1,41 @@
-'use client';
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-
+import { useEffect } from "react";
 import AuthContext from "./AuthContext";
 import BackButton from "./backButton";
-import Footer from "./footer";
 import NavBar from './navbar'
-import  AppStore, { useRemindersContext } from "./store";
+import AppStore, { useRemindersContext } from "./store";
 import { fetchReminders } from "./utilsClient";
 import './globals.css'
+
 export interface AccountLayoutProps {
   children: React.ReactNode;
 }
-
-
-
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
-})
-{
-const session=useSession()
-const {Reminders,SetReminders}=useRemindersContext()
+}) {
+  const session = useSession();
+  const { Reminders, SetReminders } = useRemindersContext();
 
-useEffect(()=>{
-   
- 
-      
-  if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0) {
-    fetchReminders()
-  };
+  useEffect(() => {
+    if (session && session != undefined && session.status == "authenticated" && Reminders.length == 0) {
+      fetchReminders();
+    };
+  }, [session]);
 
-},
-[session])
-
-  
   return (
     <html lang="en">
-<body >
-  <AuthContext>
-  <AppStore>
-  <NavBar />
-    <BackButton/>
-
-    
-    <main>{children}</main>
-    </AppStore>
-    </AuthContext>
-
-
-
-    </body>
-    
+      <body>
+        <AuthContext>
+          <AppStore>
+            <NavBar />
+            <BackButton />
+            <main>{children}</main>
+          </AppStore>
+        </AuthContext>
+      </body>
     </html>
-    
-  )
+  );
 }
