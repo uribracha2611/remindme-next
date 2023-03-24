@@ -1,31 +1,29 @@
-
 import { Reminders } from "@prisma/client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 
 interface RemindersContextState {
-  Reminders: Reminders[];
-  SetReminders: (Reminders: Reminders[]) => void;
-};
+  reminders: Reminders[] | null;
+  SetReminders: (reminders: Reminders[]) => void;
+}
 
 export const RemindersContext = createContext<RemindersContextState>({
-  Reminders: [],
+  reminders: null,
   SetReminders: () => {},
 });
 
-export default function AppStore({ children }:any) {
-  const [Rem, setRem] = useState<Reminders[]>([]);
-
-  function setReminders(reminders: Reminders[]) {
-    setRem(reminders);
-  }
+export const RemindersContextProvider = ({ children }:any) => {
+  const contextState: RemindersContextState = {
+    reminders: null,
+    SetReminders: (reminders: Reminders[]) => {
+      contextState.reminders = reminders;
+    },
+  };
 
   return (
-    <RemindersContext.Provider value={{ Reminders: Rem, SetReminders: setReminders }}>
+    <RemindersContext.Provider value={contextState}>
       {children}
     </RemindersContext.Provider>
   );
-}
+};
 
-export function useRemindersContext() {
-  return useContext(RemindersContext);
-}
+export const useRemindersContext = () => useContext(RemindersContext);
