@@ -5,29 +5,18 @@ import ReminderView from "./reminderView"
 import { useEffect, useMemo, useState } from "react";
 import { useRemindersContext } from "@/app/store";
 import { useSession } from "next-auth/react";
+import { fetchReminders } from "@/app/utils";
 export default function RemindersPage({ params}:any) {
   const CaseId=params.CaseId
   const [Loading,SetLoading]=useState(false)
   const session=useSession()
-  const {Reminders,SetReminders}=useRemindersContext()
+  const {Reminders}=useRemindersContext()
   const FilteredReminders=useMemo(()=>Reminders.filter((rem)=>rem.caseid==Number.parseInt(CaseId as string)),[Reminders])
 
 
   useEffect(()=>{
    
-      async function fetchReminders() {
-        try {
-          const response = await fetch("/api/reminders");
-          if (!response.ok) {
-            throw new Error("Failed to fetch reminders");
-          }
-          const data = await response.json();
-          console.log(data)
-          SetReminders(data.reminders);
-        } catch (error) {
-          console.error(error);
-        }
-      }
+ 
       
       if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0) {
         SetLoading(true)

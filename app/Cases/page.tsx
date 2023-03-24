@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect} from 'react';
 import CaseView from './caseView';
 
 import { useSession } from 'next-auth/react';
-import { getCases} from '../utils';
+import { fetchReminders, getCases} from '../utils';
 import { Case } from '../types';
 import { useRemindersContext } from '../store';
 
@@ -27,19 +27,7 @@ function Cases() {
 
   useEffect(() => {
     
-    async function fetchReminders() {
-      try {
-  
-        const response = await fetch("/api/reminders");
-        if (!response.ok) {
-          throw new Error("Failed to fetch reminders");
-        }
-        const data = await response.json();
-                SetReminders(data.reminders);
-      } catch (error) {
-        console.error(error);
-      }
-    }
+    
     
 
     if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0) {

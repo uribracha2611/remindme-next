@@ -4,6 +4,7 @@ import { SetStateAction, useEffect, useMemo, useState } from "react";
 import ReminderView from "../Cases/[CaseId]/reminderView";
 import { useRemindersContext } from "../store";
 import LoadingScreen from "../LoadingScreen" 
+import { fetchReminders } from "../utils";
 export default function Calender(){
     
     const [due_date, setDueDate] = useState(new Date().toISOString().split('T')[0]);
@@ -12,21 +13,7 @@ export default function Calender(){
     const session=useSession()
     useEffect(()=>{
    
-      async function fetchReminders() {
-        try {
-          const response = await fetch("/api/reminders");
-          if (!response.ok) {
-            throw new Error("Failed to fetch reminders");
-          }
-          const data = await response.json();
-          console.log("data is " +JSON.stringify(data))
-          SetReminders(data.reminders);
-          SetLoading(false)
-        } catch (error) {
-          console.error(error);
-        }
-      }
-      
+    
       if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0) {
         SetLoading(true)
         fetchReminders()
