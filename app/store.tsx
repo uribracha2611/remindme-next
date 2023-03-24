@@ -1,3 +1,4 @@
+"use client"; 
 import { Reminders } from "@prisma/client";
 import { createContext, useContext, useState } from "react";
 
