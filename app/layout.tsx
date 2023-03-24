@@ -15,6 +15,13 @@ export interface AccountLayoutProps {
 
 
 
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+})
+{
 const session=useSession()
 const {Reminders,SetReminders}=useRemindersContext()
 
@@ -28,11 +35,7 @@ useEffect(()=>{
 
 },
 [session])
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+
   
   return (
     <html lang="en">
