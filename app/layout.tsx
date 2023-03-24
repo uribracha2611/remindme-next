@@ -1,21 +1,33 @@
 'use client';
-import dynamic from "next/dynamic";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 import AuthContext from "./AuthContext";
 import BackButton from "./backButton";
 import Footer from "./footer";
+import NavBar from './navbar'
+import AppStore, { useRemindersContext } from "./store";
+import { fetchReminders } from "./utils";
+import './globals.css'
 export interface AccountLayoutProps {
   children: React.ReactNode;
 }
 
-import './globals.css'
-import NavBar from './navbar'
-import AppStore from "./store";
 
 
+const session=useSession()
+const {Reminders,SetReminders}=useRemindersContext()
 
+useEffect(()=>{
+   
+ 
+      
+  if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0) {
+    fetchReminders()
+  };
 
+},
+[session])
 export default function RootLayout({
   children,
 }: {
