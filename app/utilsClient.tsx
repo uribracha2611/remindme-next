@@ -1,3 +1,4 @@
+"use client"
 import { useRemindersContext } from "./store";
 const {SetReminders}=useRemindersContext()
 export async function fetchReminders() {
