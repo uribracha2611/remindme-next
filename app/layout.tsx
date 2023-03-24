@@ -6,8 +6,8 @@ import AuthContext from "./AuthContext";
 import BackButton from "./backButton";
 import Footer from "./footer";
 import NavBar from './navbar'
-import AppStore, { useRemindersContext } from "./store";
-import { fetchReminders } from "./utils";
+import  AppStore, { useRemindersContext } from "./store";
+import { fetchReminders } from "./utilsClient";
 import './globals.css'
 export interface AccountLayoutProps {
   children: React.ReactNode;

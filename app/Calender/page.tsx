@@ -4,7 +4,7 @@ import { SetStateAction, useEffect, useMemo, useState } from "react";
 import ReminderView from "../Cases/[CaseId]/reminderView";
 import { useRemindersContext } from "../store";
 import LoadingScreen from "../LoadingScreen" 
-import { fetchReminders } from "../utils";
+import { fetchReminders } from "../utilsClient";
 export default function Calender(){
     
     const [due_date, setDueDate] = useState(new Date().toISOString().split('T')[0]);

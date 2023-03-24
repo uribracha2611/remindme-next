@@ -4,7 +4,8 @@ import { useState, useMemo, useEffect} from 'react';
 import CaseView from './caseView';
 
 import { useSession } from 'next-auth/react';
-import { fetchReminders, getCases} from '../utils';
+import { fetchReminders} from '../utilsClient';
+import {getCases} from "../utils"
 import { Case } from '../types';
 import { useRemindersContext } from '../store';
 

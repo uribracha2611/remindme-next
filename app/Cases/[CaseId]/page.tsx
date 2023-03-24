@@ -5,7 +5,7 @@ import ReminderView from "./reminderView"
 import { useEffect, useMemo, useState } from "react";
 import { useRemindersContext } from "@/app/store";
 import { useSession } from "next-auth/react";
-import { fetchReminders } from "@/app/utils";
+import { fetchReminders } from "@/app/utilsClient";
 export default function RemindersPage({ params}:any) {
   const CaseId=params.CaseId
   const [Loading,SetLoading]=useState(false)
