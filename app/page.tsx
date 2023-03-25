@@ -1,10 +1,29 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+"use client"
 import HomeCard from '@/compoments/HomeCard'
+import { useSession } from 'next-auth/react';
+import { useRemindersContext } from './store'
 
 
 export default function Home() {
+  const {Reminders,SetReminders}=useRemindersContext()
+  const session=useSession()
+  async function fetchReminders() {
+    try {
+      const response = await fetch("/api/reminders");
+      if (!response.ok) {
+        throw new Error("Failed to fetch reminders");
+      }
+      const data = await response.json();
+      console.log(data)
+      SetReminders(data.reminders);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0) {
+    fetchReminders()
+    
+  };
   return (
     <>
      <div className="mt-24 flex flex-col  w-3/4 mx-auto " style={{gap: "2.25rem"}}>

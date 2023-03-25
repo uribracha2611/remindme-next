@@ -13,7 +13,19 @@ export default function Calender(){
     const session=useSession()
     useEffect(()=>{
    
-    
+      async function fetchReminders() {
+        try {
+          const response = await fetch("/api/reminders");
+          if (!response.ok) {
+            throw new Error("Failed to fetch reminders");
+          }
+          const data = await response.json();
+          console.log(data)
+          SetReminders(data.reminders);
+        } catch (error) {
+          console.error(error);
+        }
+      }
       if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0) {
         SetLoading(true)
         fetchReminders()
