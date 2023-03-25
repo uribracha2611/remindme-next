@@ -8,10 +8,11 @@ export default function Calender(){
     
     const [due_date, setDueDate] = useState(new Date().toISOString().split('T')[0]);
     const {Reminders,SetReminders}=useRemindersContext()
-    const [Loading,SetLoading]=useState(false)
     const session=useSession()
     useEffect(()=>{
    
+      const {Reminders,SetReminders,IsLoaded,SetIsLoaded}=useRemindersContext()
+      const session=useSession()
       async function fetchReminders() {
         try {
           const response = await fetch("/api/reminders");
@@ -21,12 +22,12 @@ export default function Calender(){
           const data = await response.json();
           console.log(data)
           SetReminders(data.reminders);
+          SetIsLoaded(true)
         } catch (error) {
           console.error(error);
         }
       }
-      if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0) {
-        SetLoading(true)
+      if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0 && !IsLoaded) {
         fetchReminders()
         
       };

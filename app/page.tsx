@@ -5,7 +5,7 @@ import { useRemindersContext } from './store'
 
 
 export default function Home() {
-  const {Reminders,SetReminders}=useRemindersContext()
+  const {Reminders,SetReminders,IsLoaded,SetIsLoaded}=useRemindersContext()
   const session=useSession()
   async function fetchReminders() {
     try {
@@ -16,11 +16,12 @@ export default function Home() {
       const data = await response.json();
       console.log(data)
       SetReminders(data.reminders);
+      SetIsLoaded(true)
     } catch (error) {
       console.error(error);
     }
   }
-  if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0) {
+  if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0 && !IsLoaded) {
     fetchReminders()
     
   };

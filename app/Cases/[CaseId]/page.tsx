@@ -10,13 +10,13 @@ export default function RemindersPage({ params}:any) {
   const CaseId=params.CaseId
   const [Loading,SetLoading]=useState(false)
   const session=useSession()
-  const {Reminders,SetReminders}=useRemindersContext()
+  const {Reminders,SetReminders, SetIsLoaded, IsLoaded}=useRemindersContext()
   const FilteredReminders=useMemo(()=>Reminders.filter((rem)=>rem.caseid==Number.parseInt(CaseId as string)),[Reminders])
 
 
   useEffect(()=>{
    
-     async function fetchReminders() {
+    async function fetchReminders() {
       try {
         const response = await fetch("/api/reminders");
         if (!response.ok) {
@@ -25,15 +25,17 @@ export default function RemindersPage({ params}:any) {
         const data = await response.json();
         console.log(data)
         SetReminders(data.reminders);
+        SetIsLoaded(true)
       } catch (error) {
         console.error(error);
       }
     }
+    if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0 && !IsLoaded) {
+      fetchReminders()
       
-      if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0) {
-        SetLoading(true)
-        fetchReminders()
-      };
+    };
+      
+
   
     },
   [session])

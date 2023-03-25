@@ -9,7 +9,7 @@ import { Case } from '../types';
 import { useRemindersContext } from '../store';
 
 function Cases() {
-  const {Reminders,SetReminders}=useRemindersContext()
+  const {Reminders,SetReminders, IsLoaded,SetIsLoaded}=useRemindersContext()
 
   const [page, setPage] = useState(1);
   const session=useSession()
@@ -37,14 +37,16 @@ function Cases() {
         const data = await response.json();
         console.log(data)
         SetReminders(data.reminders);
+        SetIsLoaded(true)
       } catch (error) {
         console.error(error);
       }
     }
-
-    if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0) {
+    if (session && session!=undefined && session.status=="authenticated" && Reminders.length==0 && !IsLoaded) {
       fetchReminders()
-    }
+      
+    };
+
   }, [session]);
 
   if (!session ) {
