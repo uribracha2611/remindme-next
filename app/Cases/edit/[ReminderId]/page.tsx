@@ -51,7 +51,6 @@ export default function EditPage({ params}:any) {
     return (
       <div className="mt-5">
 <div>
-<Link href={`/Cases/${FilteredReminders.caseid}`}> go back</Link>
 </div>
         <div className="bg-gray-300 rounded overflow-hidden shadow-lg w-1/2 mx-auto p-3">
           <div className="mx-3 ">
