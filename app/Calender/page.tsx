@@ -7,11 +7,11 @@ import LoadingScreen from "../LoadingScreen"
 export default function Calender(){
     
     const [due_date, setDueDate] = useState(new Date().toISOString().split('T')[0]);
-    const {Reminders,SetReminders}=useRemindersContext()
+    const {Reminders,SetReminders,IsLoaded,SetIsLoaded}=useRemindersContext()
     const session=useSession()
     useEffect(()=>{
    
-      const {Reminders,SetReminders,IsLoaded,SetIsLoaded}=useRemindersContext()
+ 
       const session=useSession()
       async function fetchReminders() {
         try {
