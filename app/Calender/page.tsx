@@ -4,11 +4,20 @@ import { SetStateAction, useEffect, useMemo, useState } from "react";
 import ReminderView from "../Cases/[CaseId]/reminderView";
 import { useRemindersContext } from "../store";
 import LoadingScreen from "../LoadingScreen" 
+import { redirect } from "next/navigation";
 export default function Calender(){
     
     const [due_date, setDueDate] = useState(new Date().toISOString().split('T')[0]);
     const {Reminders,SetReminders,IsLoaded,SetIsLoaded}=useRemindersContext()
+    
     const session=useSession()
+    if(session.status=="unauthenticated"){
+      return redirect("api/auth/signin")
+    }
+    else   if (session.status=="loading"){
+      return <p>loading ...</p>
+    }
+  
     useEffect(()=>{
    
  
