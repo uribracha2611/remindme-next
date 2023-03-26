@@ -7,12 +7,19 @@ import { useSession } from 'next-auth/react';
 import {getCases} from "../utils"
 import { Case } from '../types';
 import { useRemindersContext } from '../store';
+import { redirect } from 'next/navigation';
 
 function Cases() {
   const {Reminders,SetReminders, IsLoaded,SetIsLoaded}=useRemindersContext()
 
   const [page, setPage] = useState(1);
   const session=useSession()
+   if(session.status=="unauthenticated"){
+    return redirect("api/auth/signin")
+  }
+  else   if (session.status=="loading"){
+    return <p>loading ...</p>
+  }
 
   const per_page = 9;
   const cases=useMemo<Case[]>(()=>
