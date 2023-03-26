@@ -18,7 +18,7 @@ function HomeCard(props: { icon: any; title: string | number | boolean | React.R
       <div className="text-lg text-center ">
         {props.description}
       </div>
-      <div className="flex flex-col justify-center items-center mb-2 ">
+      <div className="flex flex-col justify-center items-center mt-2 ">
         <div>
           <Link href={props.href} className="bg-blue-500 text-white rounded px-3 py-2 hover:bg-blue-400 mt-2">
             {props.Button}
