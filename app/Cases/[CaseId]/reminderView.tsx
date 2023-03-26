@@ -29,6 +29,7 @@ const ReminderView=(props: Reminders)=> {
 <div className="text-center text-lg font-semibold ">
     {props.caseid.toString()}
   </div>
+  </div>
       <div className="text-center text-xl text-gray-600 font-semibold mb-2">
         {props.task}
       </div>
@@ -59,7 +60,7 @@ const ReminderView=(props: Reminders)=> {
           </Link>
         </div>
       </div>
-    </div>
+    
     </>
   );
 }

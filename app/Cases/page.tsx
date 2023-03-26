@@ -14,6 +14,7 @@ function Cases() {
 
   const [page, setPage] = useState(1);
   const session=useSession()
+  
    if(session.status=="unauthenticated"){
     return redirect("api/auth/signin")
   }
