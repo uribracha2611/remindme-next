@@ -22,7 +22,13 @@ const ReminderView=(props: Reminders)=> {
 
   return (
     <>
+ 
     <div className="max-w-sm shadow-md bg-gray-300">
+         <div className='mb-2'>
+
+<div className="text-center text-lg font-semibold ">
+    {props.caseid.toString()}
+  </div>
       <div className="text-center text-xl text-gray-600 font-semibold mb-2">
         {props.task}
       </div>
@@ -32,8 +38,8 @@ const ReminderView=(props: Reminders)=> {
       <div className="text-center text-lg font-semibold ">
         due date : {formatDueDate(props.due_date)}
       </div>
-      <div className="text-center text-lg font-semibold ">
-        case is {props.caseid.toString()}
+
+    
       </div>
       <div className="flex gap-3">
         <div>

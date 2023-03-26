@@ -55,6 +55,7 @@ export default function Home() {
             title="add Reminders"
             Button="go to add reminders"
             description="adding a new reminder requires a case number, title, description and date"
+            href={"/AddReminder"}
           />
         </div>
         <div>
@@ -63,6 +64,7 @@ export default function Home() {
             title="Cases"
             Button="See cases"
             description="reminders can be organized by cases, click on the button to see how"
+            href={"/Cases"}
           />
         </div>
         <div>
@@ -71,6 +73,7 @@ export default function Home() {
             title="calender"
             Button="go to calender"
             description="filter reminder by date, click on the button to see how"
+            href={"/Calender"}
           />
         </div>
       </div>
