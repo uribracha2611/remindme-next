@@ -41,7 +41,6 @@ const ReminderView=(props: Reminders)=> {
       </div>
 
     
-      </div>
       <div className="flex gap-3">
         <div>
           <button
@@ -60,7 +59,7 @@ const ReminderView=(props: Reminders)=> {
           </Link>
         </div>
       </div>
-    
+    </div>
     </>
   );
 }
