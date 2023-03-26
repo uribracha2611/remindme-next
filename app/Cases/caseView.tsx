@@ -35,7 +35,7 @@ const CaseView= (props:PropInter) => {
               view case
             </Link>
           </div>
-          <div>
+          <div className='mt-2 ml-2'>
             <button
               className="bg-blue-500 text-white rounded px-2 py-2 hover:bg-blue-400"
               onClick={DeleteCase}
