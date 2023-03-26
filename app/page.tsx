@@ -2,7 +2,7 @@
 import HomeCard from '@/compoments/HomeCard'
 import { useSession } from 'next-auth/react';
 import { useRemindersContext } from './store'
-
+import { faPlus, faBriefcase, faCalendar } from '@fortawesome/free-solid-svg-icons';
 
 export default function Home() {
   const {Reminders,SetReminders,IsLoaded,SetIsLoaded}=useRemindersContext()
@@ -51,7 +51,7 @@ export default function Home() {
         </div>
         <div>
           <HomeCard
-            icon="plus"
+            icon={faPlus}
             title="add Reminders"
             Button="go to add reminders"
             description="adding a new reminder requires a case number, title, description and date"
@@ -60,7 +60,7 @@ export default function Home() {
         </div>
         <div>
           <HomeCard
-            icon="briefcase"
+             icon={faBriefcase}
             title="Cases"
             Button="See cases"
             description="reminders can be organized by cases, click on the button to see how"
@@ -69,7 +69,7 @@ export default function Home() {
         </div>
         <div>
           <HomeCard
-            icon="plus"
+          icon={faCalendar}
             title="calender"
             Button="go to calender"
             description="filter reminder by date, click on the button to see how"
