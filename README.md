@@ -32,7 +32,3 @@ RemindMe is built with the following technologies:
 - Next-Auth: an authentication library for Next.js applications.
 - Prisma: a database toolkit for building type-safe and scalable databases.
 - TypeScript: a superset of JavaScript that adds static typing to the language.
-
-## License
-
-RemindMe is released under the MIT License. Please see the `LICENSE` file for more information.
