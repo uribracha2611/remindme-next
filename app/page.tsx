@@ -14,7 +14,6 @@ export default function Home() {
         throw new Error("Failed to fetch reminders");
       }
       const data = await response.json();
-      console.log(data)
       SetReminders(data.reminders);
       SetIsLoaded(true)
     } catch (error) {
