@@ -39,7 +39,6 @@ providers: [
       }
 }
 catch(err){
-  console.log("error is "+err)
   return null
 }
 

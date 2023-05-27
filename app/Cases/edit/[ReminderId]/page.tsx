@@ -6,7 +6,6 @@ import Link from "next/link"
 export default function EditPage({ params}:any) {
     const Id:number=params.ReminderId
     const {Reminders,SetReminders}=useRemindersContext()
-    console.log("reminders "+ JSON.stringify(Reminders))
     const FilteredReminders=useMemo(()=>Reminders.find(rem=>rem.id==Id) as Reminders,[Reminders])
   
     

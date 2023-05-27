@@ -28,7 +28,6 @@ export default function Calender(){
             throw new Error("Failed to fetch reminders");
           }
           const data = await response.json();
-          console.log(data)
           SetReminders(data.reminders);
           SetIsLoaded(true)
         } catch (error) {
@@ -47,8 +46,6 @@ export default function Calender(){
       const dateObj=new Date( due_date)
       dateObj.setUTCHours(0,0,0,0)
       let DateToCheck=dateObj.toISOString()
-      console.log(DateToCheck)
-      console.log("Reminders are " +JSON.stringify(Reminders))
         return Reminders.filter(
         (reminder) => {
            

@@ -19,7 +19,6 @@ export default function ReminderForm() {
     event.preventDefault();
     const dueDateObj = new Date(dueDate);
     dueDateObj.setUTCHours(0,0,0,0)
-    console.log("add date "+  dueDateObj)
     let request_data={"task": task, caseid: parseInt(caseId) ,"summery": summary,"due_date": dueDateObj,userid:session?.user?.id} as Reminders
   
     let response=await  fetch("/api/add",{method:"POST",body:JSON.stringify(request_data)})

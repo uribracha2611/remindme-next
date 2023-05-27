@@ -20,7 +20,5 @@ export  async function POST(req:NextRequest,res:any){
         id:RemData.id
     }
     })
-
-//   console.log("session is"+session)
 return NextResponse.json({"message":"update successful","reminder":reminder})
 }

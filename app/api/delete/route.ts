@@ -20,6 +20,5 @@ export  async function DELETE(req:NextRequest,res:any){
     }
     })
 
-//   console.log("session is"+session)
 return NextResponse.json({"message":"delete successful",})
 }
